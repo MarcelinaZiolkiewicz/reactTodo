@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import ToggleTheme from "./ToggleTheme";
 import InputTask from "./InputTask";
+import ListBox from "./ListBox";
 
 const Box = styled.div`
   position: fixed;
@@ -24,7 +25,8 @@ const Content = styled.div`
 `
 
 const Info = styled.p`
-  color: ${props => props.theme.colors.Light_Grayish_Blue};
+  color: ${props => props.theme.colors.Components_Grayish_Blue};
+  font-weight: 600;
   padding: 10px 15px;
 `
 
@@ -34,10 +36,10 @@ const TodoBox = () => {
             <Content>
                 <ToggleTheme/>
                 <InputTask/>
-            {/*lista zadan i na dole listy zagniezdzone sortowanie*/}
-            <Info>
-                Drag end drop to reorder list
-            </Info>
+                <ListBox/>
+                <Info>
+                    Drag end drop to reorder list
+                </Info>
             </Content>
         </Box>
     );

@@ -6,7 +6,7 @@ const CircleBorder = styled.div`
   display: inline-block;
   height: 30px;
   width: 30px;
-  background-color: ${props => props.theme.colors.Components_Grayish_Blue};;
+  background-color: ${props => props.theme.colors.Components_Grayish_Blue};
   position: relative;
   border-radius: 30px;
   transform: rotate(-40deg);
@@ -46,6 +46,31 @@ export const Circle = (props) => {
             <CircleBackground isDone={props.isDone}/>
             <Checked isDone={props.isDone} />
         </CircleBorder>
+    );
+}
+
+
+const FixedCircle = styled.div`
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  background-color: ${props => props.theme.colors.Very_Dark_Desaturated_Blue};
+  border: 2px solid ${props => props.theme.colors.Components_Grayish_Blue};
+  border-image-slice: 1;
+  border-radius: 30px;
+  transform: rotate(-40deg);
+  background-image: ${props => props.isDone ? 'linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%))' : 'none'};
+
+  &:hover {
+    border-image-source: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    border-radius: inherit;
+`
+
+export const CircleFixed = (props) => {
+    return (
+        <FixedCircle isDone={props.isDone} onClick={props.onClick}>
+            <Checked isDone={props.isDone} />
+        </FixedCircle>
     );
 }
 

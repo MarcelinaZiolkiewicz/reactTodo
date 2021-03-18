@@ -12,6 +12,7 @@ const InputBox = styled.section`
   padding: 15px 25px;
   margin-top: 4vh;
   background-color: ${props => props.theme.colors.Very_Dark_Desaturated_Blue};
+  border-radius: 8px;
 `
 
 const TaskInput = styled.input`
@@ -23,23 +24,34 @@ const TaskInput = styled.input`
   margin-left: 20px;
   color: white;
 `
+const Submit = styled.button`
+  display: none;
+`
+
 
 const InputTask = () => {
 
-    const {inputTask, setInputTask, setTaskStatus, taskStatus} = useContext(AppContext);
+    const {inputTask, setInputTask, handleTaskStatus, taskStatus, handleAddTask} = useContext(AppContext);
 
-    const handleTaskStatus = () => {
-        setTaskStatus(prevValue => !prevValue);
-    }
 
     const handleInputChange = e => {
         setInputTask(e.target.value);
     }
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        handleAddTask();
+        setInputTask("");
+        console.log('enter pressed')
+    }
+
     return(
       <InputBox>
           <Circle onClick={handleTaskStatus} isDone={taskStatus}/>
-          <TaskInput type="text" onChange={handleInputChange} value={inputTask} placeholder="Create a new todo..."/>
+          <form onSubmit={handleSubmit}>
+            <TaskInput type="text" onChange={handleInputChange} value={inputTask} placeholder="Create a new todo..."/>
+          </form>
+          <Submit type="submit"/>
       </InputBox>
     );
 }

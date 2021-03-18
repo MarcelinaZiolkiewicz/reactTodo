@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 export const AppContext = createContext();
 
@@ -6,7 +7,22 @@ const AppProvider = (props) => {
 
     const [theme, setTheme] = useState(true);
     const [inputTask, setInputTask] = useState("");
+    const [tasksList, setTasksList] = useState([]);
+
     const [taskStatus, setTaskStatus] = useState(false);
+
+    const handleAddTask = () => {
+        setTasksList([
+            ...tasksList,
+            {
+                id: uuidv4(),
+                task: inputTask,
+                isDone: false,
+            }
+        ]);
+
+        console.log(tasksList);
+    }
 
 
     const storeObject = {
@@ -15,7 +31,8 @@ const AppProvider = (props) => {
         inputTask,
         setInputTask,
         taskStatus,
-        setTaskStatus
+        setTaskStatus,
+        handleAddTask,
     }
 
     return(

@@ -24,10 +24,13 @@ const TaskInput = styled.input`
   color: white;
 `
 
-
 const InputTask = () => {
 
-    const {inputTask, setInputTask} = useContext(AppContext);
+    const {inputTask, setInputTask, setTaskStatus, taskStatus} = useContext(AppContext);
+
+    const handleTaskStatus = () => {
+        setTaskStatus(prevValue => !prevValue);
+    }
 
     const handleInputChange = e => {
         setInputTask(e.target.value);
@@ -35,7 +38,7 @@ const InputTask = () => {
 
     return(
       <InputBox>
-          <Circle/>
+          <Circle onClick={handleTaskStatus} isDone={taskStatus}/>
           <TaskInput type="text" onChange={handleInputChange} value={inputTask} placeholder="Create a new todo..."/>
       </InputBox>
     );

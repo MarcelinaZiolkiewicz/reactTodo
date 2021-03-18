@@ -6,14 +6,16 @@ const AppProvider = (props) => {
 
     const [theme, setTheme] = useState(true);
     const [inputTask, setInputTask] = useState("");
-
+    const [taskStatus, setTaskStatus] = useState(false);
 
 
     const storeObject = {
         theme,
         setTheme,
         inputTask,
-        setInputTask
+        setInputTask,
+        taskStatus,
+        setTaskStatus
     }
 
     return(

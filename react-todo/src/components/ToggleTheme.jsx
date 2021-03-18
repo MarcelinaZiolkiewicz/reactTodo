@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext} from "react";
 import styled from 'styled-components';
 
 import sun from '../images/icon-sun.svg';
@@ -14,7 +14,7 @@ const Toggle = styled.section`
   font-weight: 600;
   letter-spacing: 5px;
   color: white;
-  padding: 10px 0px;
+  padding: 10px 0;
 `
 const Text = styled.p`
   display: inline-block;
@@ -40,7 +40,6 @@ const ToggleTheme = () => {
 
     const handleChangeTheme = () => {
         setTheme(prevValue => !prevValue);
-        console.log(theme);
     }
 
     return(

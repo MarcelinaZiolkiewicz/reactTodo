@@ -21,7 +21,6 @@ const Content = styled.div`
   text-align: center;
   
 //  dodać media queris na mobile
-  
 `
 
 const Info = styled.p`

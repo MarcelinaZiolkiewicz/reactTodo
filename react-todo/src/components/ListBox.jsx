@@ -1,7 +1,6 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import styled from  'styled-components';
 
-import {Circle} from "../theme/styled";
 import {AppContext} from "../context/AppContext";
 import TaskElement from "./TaskElement";
 import TaskSort from "./TaskSort";
@@ -14,13 +13,16 @@ const ListWrapper = styled.div`
 
 const ListBox = () => {
 
+    const {tasksList} = useContext(AppContext);
+
+    const singleTask = tasksList.map(task => (
+        <TaskElement taskText={task.task}/>
+    ));
+
     return(
         <ListWrapper>
             <ul>
-                <TaskElement/>
-                <TaskElement/>
-                <TaskElement/>
-                <TaskElement/>
+                {singleTask}
             </ul>
             <TaskSort/>
         </ListWrapper>

@@ -38,7 +38,7 @@ const TodoBox = () => {
                 <InputTask/>
                 <ListBox/>
                 <Info>
-                    Drag end drop to reorder list
+                    Drag and drop to reorder list
                 </Info>
             </Content>
         </Box>

@@ -16,7 +16,7 @@ const InputBox = styled.section`
 `
 
 const TaskInput = styled.input`
-  width: 70%;
+  width: 100%;
   background-color: transparent;
   border: none;
   outline: none;
@@ -28,6 +28,9 @@ const Submit = styled.button`
   display: none;
 `
 
+const Form = styled.form`
+  width: calc(100% - 35px);
+`
 
 const InputTask = () => {
 
@@ -47,10 +50,10 @@ const InputTask = () => {
 
     return(
       <InputBox>
-          <Circle onClick={handleTaskStatus} isDone={taskStatus}/>
-          <form onSubmit={handleSubmit}>
+          <Circle hoverUnavailable={true}/>
+          <Form onSubmit={handleSubmit}>
             <TaskInput type="text" onChange={handleInputChange} value={inputTask} placeholder="Create a new todo..."/>
-          </form>
+          </Form>
           <Submit type="submit"/>
       </InputBox>
     );

@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import check from '../images/icon-check.svg';
 
 const CircleBorder = styled.div`
-  display: inline-block;
+  display: block;
   height: 30px;
   width: 30px;
   background-color: ${props => props.theme.colors.Components_Grayish_Blue};
@@ -12,9 +12,14 @@ const CircleBorder = styled.div`
   transform: rotate(-40deg);
   background-image: ${props => props.isDone ? 'linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%))' : 'none'};
   
-  &:hover {
-    background-image: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-  }
+  ${({hoverUnavailable}) =>
+          !hoverUnavailable &&
+          css`
+            &:hover{
+              background-image: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+            }
+          `
+    }
 `
 
 const CircleBackground = styled.div`
@@ -42,7 +47,7 @@ const Checked = styled.svg`
 
 export const Circle = (props) => {
     return (
-        <CircleBorder isDone={props.isDone} onClick={props.onClick}>
+        <CircleBorder isDone={props.isDone} onClick={props.onClick} hoverUnavailable={props.hoverUnavailable}>
             <CircleBackground isDone={props.isDone}/>
             <Checked isDone={props.isDone} />
         </CircleBorder>
@@ -50,15 +55,19 @@ export const Circle = (props) => {
 }
 
 
-const FixedCircle = styled.div`
+// SQUARE CHECK
+
+const FixedCheckSvg = styled(Checked)`
+  transform: rotate(0deg);
+`
+
+const FixedCheck = styled.div`
   display: inline-block;
   height: 30px;
   width: 30px;
   background-color: ${props => props.theme.colors.Very_Dark_Desaturated_Blue};
   border: 2px solid ${props => props.theme.colors.Components_Grayish_Blue};
   border-image-slice: 1;
-  border-radius: 30px;
-  transform: rotate(-40deg);
   background-image: ${props => props.isDone ? 'linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%))' : 'none'};
 
   &:hover {
@@ -66,13 +75,10 @@ const FixedCircle = styled.div`
     border-radius: inherit;
 `
 
-export const CircleFixed = (props) => {
+export const Square = (props) => {
     return (
-        <FixedCircle isDone={props.isDone} onClick={props.onClick}>
-            <Checked isDone={props.isDone} />
-        </FixedCircle>
+        <FixedCheck isDone={props.isDone} onClick={props.onClick}>
+            <FixedCheckSvg isDone={props.isDone} />
+        </FixedCheck>
     );
-}
-
-//Trzeba zmienić na takie, żeby był miało linear gradient na obwódce jak się najedzie i żeby całe było w takim gradiencie
-// jak się odznaczy zadanie
+};

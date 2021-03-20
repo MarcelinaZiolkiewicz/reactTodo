@@ -16,7 +16,7 @@ const ListBox = () => {
     const {tasksList} = useContext(AppContext);
 
     const singleTask = tasksList.map(task => (
-        <TaskElement taskText={task.task}/>
+        <TaskElement task={task}/>
     ));
 
     return(

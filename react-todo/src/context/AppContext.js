@@ -10,11 +10,23 @@ export const AppContext = createContext();
 // - Clear all completed todos
 // - Toggle light and dark mode
 
+const initialObject = [
+    {
+        id: "d55d21f0-34b9-4e45-a79b-31abe63880ba",
+        isDone: false,
+        task: "dupa"
+    },
+    {
+        id: "4a01e1e0-731e-477b-bc8e-1b6c30f1453b",
+        isDone: false,
+        task: "Zrobić coś tam"
+    }];
+
 const AppProvider = (props) => {
 
     const [theme, setTheme] = useState(true);
     const [inputTask, setInputTask] = useState("");
-    const [tasksList, setTasksList] = useState([{id: "d55d21f0-34b9-4e45-a79b-31abe63880ba", isDone: false, task: "dupa"}, {id: "4a01e1e0-731e-477b-bc8e-1b6c30f1453b", isDone: false, task: "Zrobić coś tam"}]);
+    const [tasksList, setTasksList] = useState(initialObject);
 
     const [taskStatus, setTaskStatus] = useState(false);
 
@@ -31,6 +43,21 @@ const AppProvider = (props) => {
         console.log(tasksList);
     }
 
+    const handleDeleteTask = id => {
+        const tasks = [...tasksList];
+        const thisTaskId = tasks.findIndex(task => task.id === id);
+        tasks.splice(thisTaskId, 1);
+        setTasksList(tasks);
+    }
+
+    const handleChangeTaskStatus = id => {
+        const tasks = [...tasksList];
+        const thisTaskId = tasks.findIndex(task => task.id === id);
+        const thisTask = tasks[thisTaskId];
+        thisTask.isDone = !thisTask.isDone;
+        setTasksList(tasks);
+
+    }
 
     const storeObject = {
         theme,
@@ -41,6 +68,8 @@ const AppProvider = (props) => {
         setTaskStatus,
         tasksList,
         handleAddTask,
+        handleDeleteTask,
+        handleChangeTaskStatus
     }
 
     return(

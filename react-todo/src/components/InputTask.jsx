@@ -34,7 +34,7 @@ const Form = styled.form`
 
 const InputTask = () => {
 
-    const {inputTask, setInputTask, handleTaskStatus, taskStatus, handleAddTask} = useContext(AppContext);
+    const {inputTask, setInputTask,handleAddTask} = useContext(AppContext);
 
 
     const handleInputChange = e => {
@@ -45,7 +45,6 @@ const InputTask = () => {
         e.preventDefault();
         handleAddTask();
         setInputTask("");
-        console.log('enter pressed')
     }
 
     return(

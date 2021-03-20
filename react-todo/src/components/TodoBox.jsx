@@ -17,7 +17,7 @@ const Box = styled.div`
 const Content = styled.div`
   //background-color: navajowhite;
   width: 80vw;
-  max-width: 700px;
+  max-width: 550px;
   margin: 0 auto;
   text-align: center;
   
@@ -39,6 +39,7 @@ const TodoBox = () => {
                 <ListBox/>
                 <Info>
                     Drag and drop to reorder list
+                    (Not available yet)
                 </Info>
             </Content>
         </Box>

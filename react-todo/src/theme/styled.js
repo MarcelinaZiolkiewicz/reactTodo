@@ -82,3 +82,16 @@ export const Square = (props) => {
         </FixedCheck>
     );
 };
+
+export const FooterButton = styled.button`
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: ${props => props.isActive ? '#4a69bd' : props.theme.colors.Background_Grayish_Blue};
+  font-weight: 600;
+  padding: 5px 8px;
+  
+  &:hover{
+    color: ${props => !props.isActive && props.theme.colors.Dark_Grayish_Blue};
+  }
+`

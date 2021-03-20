@@ -1,5 +1,8 @@
-import React from "react";
+import React, {useContext} from "react";
 import styled from 'styled-components';
+import {AppContext} from "../context/AppContext";
+import {FooterButton} from '../theme/styled';
+import SortButton from "./SortButton";
 
 const SortElement = styled.div`
   display: flex;
@@ -7,20 +10,37 @@ const SortElement = styled.div`
   padding: 5px 10px;
   color: ${props => props.theme.colors.Background_Grayish_Blue};
 `
+const ButtonWrapper = styled.div`
+  display: inline-block;
+`
 
+const Items = styled.p`
+  color: ${props => props.theme.colors.Background_Grayish_Blue};
+  font-weight: 600;
+  padding: 5px 8px;
+`
 
 const TaskSort = () => {
+
+    const {handleClearComplete, buttons, tasksList} = useContext(AppContext);
+
+    let itemsLeft = tasksList.length;
+
+    const Buttons = buttons.map(button => (
+        <SortButton button={button}/>
+    ));
+
     return(
         <SortElement>
-            <div style={{display: "inline-block"}}> items left</div>
-            <div style={{display: "inline-block"}}>
-                <button>All</button>
-                <button>Active</button>
-                <button>Completed</button>
-            </div>
-            <div style={{display: "inline-block"}}>
-                <button>Clear Completed</button>
-            </div>
+            <ButtonWrapper>
+                <Items>{itemsLeft} items left</Items>
+            </ButtonWrapper>
+            <ButtonWrapper>
+                {Buttons}
+            </ButtonWrapper>
+            <ButtonWrapper>
+                <FooterButton onClick={handleClearComplete}>Clear Completed</FooterButton>
+            </ButtonWrapper>
         </SortElement>
     );
 }

@@ -23,7 +23,8 @@ const Task = styled.li`
   background-color: transparent;
   padding: 10px 15px;
   border-bottom: 2px solid ${props => props.theme.colors.Components_Grayish_Blue};
-
+  overflow: hidden;
+  
   &:hover{
     ${DeleteButton}{
       display: block;
@@ -32,9 +33,9 @@ const Task = styled.li`
 `
 
 const TaskText = styled.p`
-  color: white;
-  margin-left: 1vw;
-  width: calc(100% - 1vw - 65px);
+  color: ${props => props.theme.colors.Light_Grayish_Blue};
+  margin-left: 10px;
+  width: calc(100% - 10px - 65px);
   text-align: left;
   
   ${({isDone}) => 
@@ -46,7 +47,6 @@ const TaskText = styled.p`
         `
     }
 `
-
 
 const TaskElement = ({task}) => {
 

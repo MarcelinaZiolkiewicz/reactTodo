@@ -4,6 +4,8 @@ import styled from  'styled-components';
 import {AppContext} from "../context/AppContext";
 import TaskElement from "./TaskElement";
 import TaskSort from "./TaskSort";
+import SortButton from "./SortButton";
+import {act} from "@testing-library/react";
 
 const ListWrapper = styled.div`
   background-color: ${props => props.theme.colors.Very_Dark_Desaturated_Blue};
@@ -13,9 +15,28 @@ const ListWrapper = styled.div`
 
 const ListBox = () => {
 
-    const {tasksList} = useContext(AppContext);
+    const {tasksList, sortType} = useContext(AppContext);
 
-    const singleTask = tasksList.map(task => (
+    const showMeSortedTasks = () => {
+
+        if (sortType === 'ALL'){
+            return tasksList;
+        }
+        else if (sortType === 'ACTIVE'){
+            const tasks = [...tasksList];
+            const active = tasks.filter(task => !task.isDone);
+            return active;
+        }
+        else if (sortType === 'COMPLETED'){
+            const tasks = [...tasksList];
+            const completed = tasks.filter(task => task.isDone);
+            return completed;
+        }
+    }
+
+    let taskToRender = showMeSortedTasks();
+
+    const singleTask = taskToRender.map(task => (
         <TaskElement task={task}/>
     ));
 

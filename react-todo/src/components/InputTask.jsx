@@ -10,8 +10,8 @@ const InputBox = styled.section`
   align-items: center;
   text-align: left;
   padding: 15px 25px;
-  margin-top: 4vh;
-  background-color: ${props => props.theme.colors.Very_Dark_Desaturated_Blue};
+  margin-top: 2vh;
+  background-color: ${props => props.isDarkMode ? props.theme.colors.Very_Dark_Desaturated_Blue : props.theme.colors.Light_Grayish_Blue_hover};
   border-radius: 8px;
 `
 
@@ -20,9 +20,10 @@ const TaskInput = styled.input`
   background-color: transparent;
   border: none;
   outline: none;
-  font-size: 1.1em;
+  font-size: 1.2em;
   margin-left: 20px;
-  color: white;
+  font-weight: 600;
+  color: ${props => props.isDarkMode ? props.theme.colors.Light_Grayish_Blue : props.theme.colors.Background_Grayish_Blue};
 `
 const Submit = styled.button`
   display: none;
@@ -34,7 +35,7 @@ const Form = styled.form`
 
 const InputTask = () => {
 
-    const {inputTask, setInputTask,handleAddTask} = useContext(AppContext);
+    const {inputTask, setInputTask,handleAddTask, theme} = useContext(AppContext);
 
 
     const handleInputChange = e => {
@@ -48,10 +49,16 @@ const InputTask = () => {
     }
 
     return(
-      <InputBox>
-          <Circle hoverUnavailable={true}/>
+      <InputBox isDarkMode={theme}>
+          <Circle hoverUnavailable={true} isDarkMode={theme}/>
           <Form onSubmit={handleSubmit}>
-            <TaskInput type="text" onChange={handleInputChange} value={inputTask} placeholder="Create a new todo..."/>
+            <TaskInput
+                type="text"
+                onChange={handleInputChange}
+                value={inputTask}
+                placeholder="Create a new todo..."
+                isDarkMode={theme}
+            />
           </Form>
           <Submit type="submit"/>
       </InputBox>

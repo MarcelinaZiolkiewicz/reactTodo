@@ -11,7 +11,7 @@ const Toggle = styled.section`
   justify-content: space-between;
   text-transform: uppercase;
   font-size: 40px;
-  font-weight: 600;
+  font-weight: bold;
   letter-spacing: 5px;
   color: white;
   padding: 10px 0;

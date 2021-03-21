@@ -6,7 +6,7 @@ const CircleBorder = styled.div`
   display: block;
   height: 30px;
   width: 30px;
-  background-color: ${props => props.theme.colors.Components_Grayish_Blue};
+  background-color: ${props => props.isDarkMode ? props.theme.colors.Components_Grayish_Blue : props.theme.colors.Light_Grayish_Blue };
   position: relative;
   border-radius: 30px;
   transform: rotate(-40deg);
@@ -27,9 +27,9 @@ const CircleBackground = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: ${props => props.theme.colors.Very_Dark_Desaturated_Blue};
-    height: 24px;
-    width: 24px;
+    background-color: ${props => props.isDarkMode ? props.theme.colors.Very_Dark_Desaturated_Blue : props.theme.colors.Light_Grayish_Blue_hover};
+    height: 26px;
+    width: 26px;
     border-radius: 30px;
     display: ${props => props.isDone ? 'none' : 'block'};
 `
@@ -47,8 +47,8 @@ const Checked = styled.svg`
 
 export const Circle = (props) => {
     return (
-        <CircleBorder isDone={props.isDone} onClick={props.onClick} hoverUnavailable={props.hoverUnavailable}>
-            <CircleBackground isDone={props.isDone}/>
+        <CircleBorder isDone={props.isDone} onClick={props.onClick} hoverUnavailable={props.hoverUnavailable} isDarkMode={props.isDarkMode}>
+            <CircleBackground isDone={props.isDone} isDarkMode={props.isDarkMode}/>
             <Checked isDone={props.isDone} />
         </CircleBorder>
     );
@@ -87,9 +87,12 @@ export const FooterButton = styled.button`
   background-color: transparent;
   border: none;
   outline: none;
-  color: ${props => props.isActive ? '#4a69bd' : props.theme.colors.Background_Grayish_Blue};
+  color: ${props => props.isActive ? '#4a69bd' : props.isDarkMode ? props.theme.colors.Background_Grayish_Blue : props.theme.colors.Light_Grayish_Blue};
   font-weight: 600;
   padding: 5px 8px;
+  
+  
+  
   
   &:hover{
     color: ${props => !props.isActive && props.theme.colors.Dark_Grayish_Blue};

@@ -22,7 +22,7 @@ const Task = styled.li`
   list-style: none;
   background-color: transparent;
   padding: 10px 15px;
-  border-bottom: 2px solid ${props => props.theme.colors.Components_Grayish_Blue};
+  border-bottom: 1px solid ${props => props.isDarkMode ? props.theme.colors.Components_Grayish_Blue : props.theme.colors.Light_Grayish_Blue};
   overflow: hidden;
   
   &:hover{
@@ -33,16 +33,17 @@ const Task = styled.li`
 `
 
 const TaskText = styled.p`
-  color: ${props => props.theme.colors.Light_Grayish_Blue};
+  color: ${props => props.isDarkMode ? props.theme.colors.Light_Grayish_Blue : props.theme.colors.Very_Dark_Blue};
   margin-left: 10px;
   width: calc(100% - 10px - 65px);
   text-align: left;
+  font-weight: 600;
   
   ${({isDone}) => 
     isDone &&
         css`
           text-decoration: line-through;
-          color: ${props => props.theme.colors.Background_Grayish_Blue};
+          color: ${props => props.isDarkMode ? props.theme.colors.Background_Grayish_Blue : props.theme.colors.Dark_Grayish_Blue};
           font-weight: 700;
         `
     }
@@ -50,7 +51,7 @@ const TaskText = styled.p`
 
 const TaskElement = ({task}) => {
 
-    const { handleDeleteTask, handleChangeTaskStatus } = useContext(AppContext);
+    const { handleDeleteTask, handleChangeTaskStatus, theme } = useContext(AppContext);
 
     const handleTaskStatus = () => {
         handleChangeTaskStatus(task.id);
@@ -61,9 +62,9 @@ const TaskElement = ({task}) => {
     }
 
     return (
-        <Task>
-            <Circle onClick={handleTaskStatus} isDone={task.isDone}/>
-            <TaskText isDone={task.isDone}>{task.task}</TaskText>
+        <Task isDarkMode={theme}>
+            <Circle onClick={handleTaskStatus} isDone={task.isDone} isDarkMode={theme}/>
+            <TaskText isDone={task.isDone} isDarkMode={theme}>{task.task}</TaskText>
             <DeleteButton onClick={handleDelete} />
         </Task>
     );

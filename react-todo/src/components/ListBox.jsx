@@ -4,18 +4,17 @@ import styled from  'styled-components';
 import {AppContext} from "../context/AppContext";
 import TaskElement from "./TaskElement";
 import TaskSort from "./TaskSort";
-import SortButton from "./SortButton";
-import {act} from "@testing-library/react";
+
 
 const ListWrapper = styled.div`
-  background-color: ${props => props.theme.colors.Very_Dark_Desaturated_Blue};
-  margin-top: 10vh;
+  background-color: ${props => props.isDarkMode ? props.theme.colors.Very_Dark_Desaturated_Blue : props.theme.colors.Light_Grayish_Blue_hover};
+  margin-top: 3vh;
   border-radius: 8px;
 `
 
 const ListBox = () => {
 
-    const {tasksList, sortType} = useContext(AppContext);
+    const {tasksList, sortType, theme} = useContext(AppContext);
 
     const showMeSortedTasks = () => {
 
@@ -24,13 +23,11 @@ const ListBox = () => {
         }
         else if (sortType === 'ACTIVE'){
             const tasks = [...tasksList];
-            const active = tasks.filter(task => !task.isDone);
-            return active;
+            return tasks.filter(task => !task.isDone);
         }
         else if (sortType === 'COMPLETED'){
             const tasks = [...tasksList];
-            const completed = tasks.filter(task => task.isDone);
-            return completed;
+            return tasks.filter(task => task.isDone);
         }
     }
 
@@ -41,7 +38,7 @@ const ListBox = () => {
     ));
 
     return(
-        <ListWrapper>
+        <ListWrapper isDarkMode={theme}>
             <ul>
                 {singleTask}
             </ul>

@@ -17,6 +17,7 @@ const CircleBorder = styled.div`
           css`
             &:hover{
               background-image: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+              cursor: pointer;
             }
           `
     }

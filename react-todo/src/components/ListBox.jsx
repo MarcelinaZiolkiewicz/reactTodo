@@ -4,6 +4,7 @@ import styled from  'styled-components';
 import {AppContext} from "../context/AppContext";
 import TaskElement from "./TaskElement";
 import TaskSort from "./TaskSort";
+import SortButton from "./SortButton";
 
 
 const ListWrapper = styled.div`
@@ -12,9 +13,21 @@ const ListWrapper = styled.div`
   border-radius: 8px;
 `
 
+const SortButtons = styled.div`
+  display: none;
+  margin-top: 30px;
+  background-color: ${props => props.isDarkMode ? props.theme.colors.Very_Dark_Desaturated_Blue : props.theme.colors.Light_Grayish_Blue_hover};
+  padding: 8px 10px;
+  border-radius: 8px;
+  
+  @media (max-width: 720px){
+    display: block;
+  }
+`
+
 const ListBox = () => {
 
-    const {tasksList, sortType, theme} = useContext(AppContext);
+    const {tasksList, sortType, theme, buttons} = useContext(AppContext);
 
     const showMeSortedTasks = () => {
 
@@ -37,13 +50,23 @@ const ListBox = () => {
         <TaskElement task={task}/>
     ));
 
+    const Buttons = buttons.map(button => (
+        <SortButton button={button}/>
+    ));
+
     return(
-        <ListWrapper isDarkMode={theme}>
-            <ul>
-                {singleTask}
-            </ul>
-            <TaskSort/>
-        </ListWrapper>
+        <>
+            <ListWrapper isDarkMode={theme}>
+                <ul>
+                    {singleTask}
+                </ul>
+                <TaskSort/>
+            </ListWrapper>
+
+            <SortButtons isDarkMode={theme}>
+                {Buttons}
+            </SortButtons>
+        </>
     );
 }
 

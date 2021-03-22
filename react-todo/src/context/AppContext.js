@@ -38,7 +38,9 @@ const initialObject = [
 
 
 // - View the optimal layout for the app depending on their device's screen size
-// - Toggle light and dark mode
+//font musi byc rezponsywny - task i input
+//sortwoanie - drugi div - display none - ma mobilce się włącza
+
 
 const AppProvider = props => {
 
@@ -65,14 +67,17 @@ const AppProvider = props => {
     ]);
 
     const handleAddTask = () => {
-        setTasksList([
-            ...tasksList,
-            {
-                id: uuidv4(),
-                task: inputTask,
-                isDone: false,
-            }
-        ]);
+        if  (inputTask){
+            setTasksList([
+                ...tasksList,
+                {
+                    id: uuidv4(),
+                    task: inputTask,
+                    isDone: false,
+                }
+            ]);
+        }
+
 
         console.log(tasksList);
     }

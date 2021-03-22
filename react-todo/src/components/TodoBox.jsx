@@ -24,7 +24,11 @@ const Content = styled.div`
 
 const Info = styled.p`
   margin-top: 40px;
-  color: ${props => props.isDarkMode ? props.theme.colors.Components_Grayish_Blue : props.theme.colors.Dark_Grayish_Blue};
+  color: ${props => 
+          props.isDarkMode 
+                  ? props.theme.colors.Components_Grayish_Blue 
+                  : props.theme.colors.Dark_Grayish_Blue
+          };
   font-weight: 600;
   padding: 10px 15px;
   font-size: 12px;

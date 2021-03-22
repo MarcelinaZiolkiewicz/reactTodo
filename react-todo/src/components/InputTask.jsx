@@ -20,10 +20,16 @@ const TaskInput = styled.input`
   background-color: transparent;
   border: none;
   outline: none;
-  font-size: 1.2em;
+  font-size: 1.1em;
   margin-left: 20px;
   font-weight: 600;
   color: ${props => props.isDarkMode ? props.theme.colors.Light_Grayish_Blue : props.theme.colors.Background_Grayish_Blue};
+
+  @media (max-width: 720px) {
+    font-size: 0.8em;
+    font-weight: 300;
+  }
+
 `
 const Submit = styled.button`
   display: none;

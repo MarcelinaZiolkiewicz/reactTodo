@@ -14,6 +14,10 @@ const DeleteButton = styled.svg`
   height: 30px;
   width: 30px;
   margin-left: 10px;
+  
+  &:hover{
+    cursor: pointer;
+  }
 `
 
 const Task = styled.li`
@@ -38,6 +42,7 @@ const TaskText = styled.p`
   width: calc(100% - 10px - 65px);
   text-align: left;
   font-weight: 600;
+  font-size: 1.1em;
   
   ${({isDone}) => 
     isDone &&
@@ -46,7 +51,12 @@ const TaskText = styled.p`
           color: ${props => props.isDarkMode ? props.theme.colors.Background_Grayish_Blue : props.theme.colors.Dark_Grayish_Blue};
           font-weight: 700;
         `
-    }
+  };
+
+  @media (max-width: 720px) {  
+    font-size: 0.8em;
+    font-weight: 500;
+  }
 `
 
 const TaskElement = ({task}) => {

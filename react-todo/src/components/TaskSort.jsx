@@ -7,11 +7,15 @@ import SortButton from "./SortButton";
 const SortElement = styled.div`
   display: flex; 
   justify-content: space-between;
-  padding: 5px 10px;
+  padding: 10px 15px;
   color: ${props => props.theme.colors.Background_Grayish_Blue};
 `
 const ButtonWrapper = styled.div`
   display: inline-block;
+
+  @media (max-width: 720px){
+    display: ${props => props.onlyDesktop && 'none'};
+  }
 `
 
 const Items = styled.p`
@@ -36,17 +40,21 @@ const TaskSort = () => {
     ));
 
     return(
-        <SortElement>
-            <ButtonWrapper>
-                <Items isDarkMode={theme}>{itemsLeft()} items left</Items>
-            </ButtonWrapper>
-            <ButtonWrapper>
-                {Buttons}
-            </ButtonWrapper>
-            <ButtonWrapper>
-                <FooterButton onClick={handleClearComplete} isDarkMode={theme}>Clear Completed</FooterButton>
-            </ButtonWrapper>
-        </SortElement>
+        <>
+            <SortElement>
+                <ButtonWrapper>
+                    <Items isDarkMode={theme}>{itemsLeft()} items left</Items>
+                </ButtonWrapper>
+                <ButtonWrapper onlyDesktop={true}>
+                    {Buttons}
+                </ButtonWrapper>
+                <ButtonWrapper>
+                    <FooterButton onClick={handleClearComplete} isDarkMode={theme}>Clear Completed</FooterButton>
+                </ButtonWrapper>
+            </SortElement>
+
+
+        </>
     );
 }
 

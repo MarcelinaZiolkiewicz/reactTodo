@@ -1,13 +1,13 @@
 ## The challenge
 
-Your users should be able to:
+[Podgląd](https://fmctodoapp.netlify.app/)
 
-- View the optimal layout for the app depending on their device's screen size
-- See hover states for all interactive elements on the page
-- Add new todos to the list
-- Mark todos as complete
-- Delete todos from the list
-- Filter by all/active/complete todos
-- Clear all completed todos
-- Toggle light and dark mode
-- **Bonus**: Drag and drop to reorder items on the list
+Dostępne funkcje
+
+- Aplikacja jest rezponsywna
+- Można dodawać zadania
+- Można odznaczać zadania
+- Można usuwać zadania z listy
+- Sortowanie aktywne/zrobione/wszystkie
+- Usuwanie wszystkich zrobionych
+- Zmiana motywu jasny/ciemny
